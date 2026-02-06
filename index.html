@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caçador de Tesouros</title>
+    <link rel="shortcut icon" href="https://i.postimg.cc/4dhf2XcR/favicon.png" type="image/png">
+    <style>
+        body {
+            background-color: antiquewhite;
+            text-align: center;
+            margin-top: 15%;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caçador de Tesouros</h1>
+    <p>Escolha um número de 1 a 10:</p>
+    <input type="number" id="escolha" min="1" max="5">
+    <button onclick="procurarTesouro()">Procurar Tesouro</button>
+    <p id="resultado"></p>
+    <script>
+        let tentativas = 3;
+        let numeroCorreto = Math.floor(Math.random() * 10) + 1;
+        function procurarTesouro() {
+            let escolhaJogador = parseInt(document.getElementById('escolha').value);
+            if (tentativas > 0) {
+                if (escolhaJogador === numeroCorreto) {
+                    document.getElementById('resultado').innerText = "Parabéns! Você encontrou o tesouro em " + tentativas + " tentativas.";
+                    tentativas = 0;
+                }
+                else if (tentativas > 1) {
+                    tentativas--;
+                    document.getElementById('resultado').innerText = "Você encontrou uma armadilha! Restam" + tentativas + " tentativas.";
+                } 
+                else {
+                    document.getElementById('resultado').innerText = "Game Over! Você encontrou o monstro e não tem mais tentativas!";
+                    tentativas = 0; // Termina o jogo
+                }
+            }
+        }
+    </script>
+</body>
+</html>
